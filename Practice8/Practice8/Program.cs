@@ -1,4 +1,7 @@
-﻿class Number
+﻿using System.Collections;
+using System.Collections.Generic;
+
+class Number
 {
     private int value;
      public void SetValue(int value)
@@ -76,18 +79,69 @@
       }
      public int GetSumOfDigits()
     {
-
+        int num = value; 
+        int digit, sum = 0;
+        while (num > 0) 
+        {
+            digit = num % 10;
+            num = num / 10;
+            sum += digit; 
+        }
+        return sum;
 
     }
      public int GetReverse()
     {
+        int num = value;
+        int digit, reverse = 0;
+        Stack<int> stack = new Stack<int>();
 
+        while (num > 0)
+        {
+            digit = num % 10;
+            num = num / 10;
+           stack.Push(digit);
+        }
+        while(stack .Count >0)
+        {
+            reverse+= stack.Pop();
+        }
+        return reverse;
     }
      public string ToWords()
     {
-
+        int num = value;
+        int digit;
+        string word , answer = "";
+        while (num > 0)
+        {
+            digit = num % 10;
+            num = num / 10;
+            word = Number.GetWord(digit);
+            answer += word;
+            
+        }
+        return answer;
+               
     }
-     public bool IsArmstrong()
+    public static string GetWord(int digit)
+    {
+        switch (digit)
+        {
+            case 0: return "Zero ";
+            case 1: return "One ";
+            case 2: return "Two ";
+            case 3: return "Three ";
+            case 4: return "Four ";
+            case 5: return "Five ";
+            case 6: return "Six ";
+            case 7: return "Seven ";
+            case 8: return "Eight ";
+            case 9: return "Nine ";
+            default: return "";
+        }
+    }
+    public bool IsArmstrong()
     {
 
     }
